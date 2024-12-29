@@ -32,11 +32,10 @@ chroot ${CHROOT} ash -l -c "
 apk add --no-cache --allow-untrusted postmarketos-keys
 apk add --no-cache \
     bridge-utils \
-    chrony \
     dropbear \
     eudev \
     gadget-tool \
-    iptables \
+    nftables \
     linux-postmarketos-qcom-msm8916 \
     modemmanager \
     msm-firmware-loader \
@@ -47,11 +46,9 @@ apk add --no-cache \
     networkmanager-wwan \
     openrc \
     rmtfs \
-    sudo \
+    doas \
     udev-init-scripts \
     udev-init-scripts-openrc \
-    wireguard-tools \
-    wireguard-tools-wg-quick \
     wpa_supplicant \
     shadow
 "
@@ -79,7 +76,7 @@ rc-update add rmtfs default
 rc-update add modemmanager default
 rc-update add networkmanager default
 "
-echo 'user ALL=(ALL:ALL) NOPASSWD: ALL' > ${CHROOT}/etc/sudoers.d/user
+echo 'permit user as root' > ${CHROOT}/etc/doas.d/doas.conf
 
 # add udev rules
 cat << EOF > ${CHROOT}/etc/udev/rules.d/10-udc.rules
