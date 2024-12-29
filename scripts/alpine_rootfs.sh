@@ -71,6 +71,7 @@ rc-update add bootmisc boot
 rc-update add mount-ro shutdown
 rc-update add killprocs shutdown
 rc-update add savecache shutdown
+rc-update add ntpd default
 rc-update add dropbear default
 rc-update add rmtfs default
 rc-update add modemmanager default
